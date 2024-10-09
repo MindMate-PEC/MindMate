@@ -11,7 +11,6 @@ router.use(morgan("dev"));
 router.use(express.json());
 
 const ENCRYPTION_KEY = Buffer.from(process.env.ENCRYPTION_KEY, 'hex'); // Must be 32 bytes
- // Must be 256 bits (32 characters)
 const IV_LENGTH = 16; // For AES, this is always 16
 
 function encrypt(text) {
@@ -30,39 +29,30 @@ function encrypt(text) {
 
 function decrypt(text) {
   let textParts = text.split(":");
-  let iv = Buffer.from(textParts.shift(), "hex");
-  let encryptedText = Buffer.from(textParts.join(":"), "hex");
+
+  if (textParts.length !== 2) {
+    throw new Error("Invalid encrypted text format");
+  }
+
+  // Extract IV and encrypted content
+  let iv = Buffer.from(textParts[0], "hex");  // Convert IV from hex to Buffer
+  let encryptedText = Buffer.from(textParts[1], "hex");  // Convert encrypted content from hex to Buffer
+
+  if (iv.length !== 16) {
+    throw new Error("Invalid IV length");  // Ensure IV is exactly 16 bytes
+  }
+
   let decipher = crypto.createDecipheriv(
     "aes-256-cbc",
-    Buffer.from(ENCRYPTION_KEY),
+    Buffer.from(ENCRYPTION_KEY), // 32-byte key
     iv
   );
-  let decrypted = decipher.update(encryptedText);
 
+  let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);
 
   return decrypted.toString();
 }
-
-// // Example usage:
-// function saveNote(noteText) {
-//   const encryptedNote = encrypt(noteText);
-//   // Save encryptedNote to database
-//   console.log('Encrypted note:', encryptedNote);
-// }
-
-// function analyzeNote(encryptedNote) {
-//   const decryptedNote = decrypt(encryptedNote);
-//   // Apply ML model to decryptedNote
-//   console.log('Decrypted note:', decryptedNote);
-// }
-
-// // Test
-// const testNote = "This is a secret note about my feelings.";
-// saveNote(testNote);
-// // Simulating retrieval from database
-// const retrievedNote = encrypt(testNote); // In real scenario, this would be fetched from DB
-// analyzeNote(retrievedNote);
 
 router.post("/postNote", async (req, res) => {
   const { userId, heading, content } = req.body;
@@ -90,6 +80,10 @@ router.post("/getNotes", async (req, res) => {
   const { userId } = req.body;
   try {
     const notes = await db.Notes.findAll({ where: { userId } });
+    notes.forEach(element => {
+      // console.log(element);
+      element.content = decrypt(element.content);
+    });
     res.json({ data: notes });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
