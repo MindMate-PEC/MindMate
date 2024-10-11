@@ -42,7 +42,7 @@ import styles from './MainHeader.module.css'; // Import the CSS module
 function MainHeader({ onCreatePost, onLogin, onRegister, logout }) {
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>My Notes App</h1>
+      <h1 className={styles.title}>MindMate</h1>
       <div className={styles.buttonGroup}>
         <button className={styles.button} onClick={onCreatePost}>Create Note</button>
         <button className={styles.button} onClick={onLogin}>Login</button>
