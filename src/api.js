@@ -30,7 +30,7 @@ export const loginUser = async (email, password) => {
 };
 
 // Create a new note
-export const createNote = async (userId, heading, content) => {
+export const createNote = async ({ userId, heading, content }) => {
   try {
     const response = await axios.post(`${API_URL}/notes/postNote`, {
       userId,
@@ -39,7 +39,12 @@ export const createNote = async (userId, heading, content) => {
     });
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    // More generalized error handling
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.error || "An error occurred");
+    } else {
+      throw new Error("Network error. Please try again.");
+    }
   }
 };
 
