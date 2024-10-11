@@ -21,6 +21,7 @@ function Register({ onClose }) {
     } catch (error) {
       setErrorMessage(error.message || 'Login failed. Please try again.');
     }
+    alert("User registered succesfully");
   };
 
   return (

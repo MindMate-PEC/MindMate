@@ -21,6 +21,7 @@ function Login({ onClose }) {
       window.location.reload();
       // Optionally handle successful login (e.g., redirect, update state, etc.)
       onClose(); // Close modal after successful login
+      alert("User login succesfull");
     } catch (error) {
       // If an error occurs, set the error message to display it
       setErrorMessage(error.message || "Login failed. Please try again.");

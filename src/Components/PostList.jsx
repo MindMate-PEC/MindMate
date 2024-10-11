@@ -61,7 +61,7 @@ function PostList(props) {
             <Post key={note.id} author={note.heading} body={note.content} />
           ))
         ) : (
-          <p>No notes found.</p>
+          <p></p>
         )}
       </ul>
     </>
