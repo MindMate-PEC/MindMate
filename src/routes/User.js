@@ -48,6 +48,8 @@ router.post('/login', async (req, res) => {
       { expiresIn: '1h' }
     );
 
+    await user.update({ token });
+
     res.status(200).json({ message: 'Login successful', token, userId: user.userId });
   } catch (error) {
     console.error(error);

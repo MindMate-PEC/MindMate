@@ -1,16 +1,26 @@
 // Register.jsx
 import React, { useState } from 'react';
-import styles from './Register.module.css'; // Import the CSS module
+import styles from './Register.module.css'; 
+import {registerUser} from "../api"
+
 
 function Register({ onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); 
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    // Call your register API here
-    // Example: await api.register({ email, password });
-    onClose(); // Close modal after successful registration
+    setErrorMessage(''); 
+
+    try {
+
+      const data = await registerUser(email, password);
+
+      onClose();
+    } catch (error) {
+      setErrorMessage(error.message || 'Login failed. Please try again.');
+    }
   };
 
   return (

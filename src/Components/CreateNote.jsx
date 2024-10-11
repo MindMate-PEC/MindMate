@@ -1,16 +1,28 @@
 // CreateNote.jsx
 import React, { useState } from 'react';
 import styles from './CreateNote.module.css'; // Import the CSS module
-
+import {createNote} from "../api";
 function CreateNote({ onStopPosting }) {
   const [heading, setHeading] = useState('');
   const [content, setContent] = useState('');
+  const [ErrorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Call your API to create a new note here
-    // Example: await api.createNote({ heading, content });
-    onStopPosting(); // Close modal after submission
+    setErrorMessage(''); // Clear previous error message
+
+    try {
+      // Call the login API
+      const userId = localStorage.getItem(userId);
+      if (!userId) {
+        throw new Error("User ID is missing. Please log in again.");
+      }
+      const data = await createNote(userId, heading, content);
+      onStopPosting(); // Close modal after successful login
+    } catch (error) {
+      // If an error occurs, set the error message to display it
+      setErrorMessage(error.message || 'Login failed. Please try again.');
+    }
   };
 
   return (
