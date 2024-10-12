@@ -10,21 +10,17 @@ function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isRegisterVisible, setIsRegisterVisible] = useState(false);
-  const [isLogoutVisible, setIsLogoutVisible] = useState(false);
 
   function hideModalVisible(event) {
     setModalVisible(false);
     setIsLoginVisible(false);
     setIsRegisterVisible(false);
-    setIsLogoutVisible(false);
   }
 
   function showModalVisible(event) {
-    setModalVisible(true);
-  }
-
-  function showLogoutVisible(event) {
-    setLogoutVisible(true);
+    if (localStorage.getItem("userId")) {
+      setModalVisible(true);
+    }
   }
 
   function showLoginModal(event) {
@@ -43,12 +39,12 @@ function App() {
   return (
     <>
       <MainHeader
-        onCreatePost={showModalVisible}
         onLogin={showLoginModal}
         onRegister={showRegisterModal}
         logout={logout}
       />
-      <PostList onStopPosting={hideModalVisible} isPosting={modalVisible} />
+      <button className={styles.headerButton} onClick={showModalVisible}>Create Note</button>
+      <PostList onStopPosting={hideModalVisible} showModalVisible = {showModalVisible} isPosting={modalVisible} />
 
       {modalVisible && <Modal onStopPosting={hideModalVisible} />}
       {isLoginVisible && <Login onClose={hideModalVisible} />}

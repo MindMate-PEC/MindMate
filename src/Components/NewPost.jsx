@@ -13,17 +13,13 @@ function NewPost(props) {
   }
   async function onSubmit(event) {
     event.preventDefault();
-    // const PostData = {
-    //   body: enteredBody,
-    //   author: enteredAuthor
-    // }
-    // console.log(PostData);
 
     try {
       // Fetch the userId from localStorage
       const userId = localStorage.getItem("userId");
       if (!userId) {
-        throw new Error("User ID is missing. Please log in again.");
+        // alert("User ID is missing. Please log in again.");
+        window.location.reload();
       }
       // console.log("userId", userId);
       // Call the createNote API

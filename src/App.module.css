@@ -1,15 +1,48 @@
-/* globals.css
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+/* Reset focus outline, border, and box-shadow */
+.button,
+.headerButton {
+  background-color: #4c05d0;
+  color: white;
+  border: none; /* Removes border */
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  outline: none !important; /* Removes focus outline */
+  box-shadow: none !important; /* Removes box-shadow */
+}
+
+/* Remove any pseudo-elements or unwanted styles */
+.button::before,
+.button::after {
+  content: none !important; /* Disables pseudo-elements */
+}
+
+/* On hover, change the background */
+.button:hover,
+.headerButton:hover {
+  background-color: #0056b3; /* Change color on hover */
+}
+
+/* Focus state */
+.button:focus,
+.headerButton:focus {
+  outline: none !important; /* Ensure outline is removed */
+  box-shadow: none !important; /* Ensure no box-shadow */
+}
+
+/* Additional styles for the button in header */
+.headerButton {
+  margin-top: 15px;
+  font-size: 1rem;
+  margin-left: 20px;
+}
+
+/* For mobile responsiveness if needed */
+@media (max-width: 600px) {
+  .button,
+  .headerButton {
+    width: 100%;
+    padding: 12px;
   }
-  
-  button {
-    font-family: inherit;
-  }
-  
-  input, textarea {
-    font-family: inherit;
-  }
-   */
+}

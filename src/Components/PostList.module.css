@@ -1,10 +1,35 @@
 .posts {
-    list-style: none;
-    max-width: 50rem;
-    margin: 1rem auto;
-    padding: 1rem 0;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(3, 30%);
-    justify-content: center;
-  }
+  list-style: none;
+  max-width: 70rem;
+  margin: 1rem auto;
+  padding: 1rem 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr); /* Ensure columns are evenly spaced */
+  grid-auto-rows: minmax(100px, auto); /* Ensure rows auto-expand */
+  justify-content: center;
+}
+
+.buttonContainer {
+  grid-column: span 3; /* Make button span across all columns */
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+}
+
+.button {
+  font-size: medium;
+  background-color: #4c05d0;
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 100%; /* Make the button fill the entire space */
+  max-width: 20rem;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
