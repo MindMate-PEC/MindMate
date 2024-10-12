@@ -20,6 +20,8 @@ function App() {
   function showModalVisible(event) {
     if (localStorage.getItem("userId")) {
       setModalVisible(true);
+    } else {
+      alert("Kindly login or register");
     }
   }
 
@@ -43,8 +45,14 @@ function App() {
         onRegister={showRegisterModal}
         logout={logout}
       />
-      <button className={styles.headerButton} onClick={showModalVisible}>Create Note</button>
-      <PostList onStopPosting={hideModalVisible} showModalVisible = {showModalVisible} isPosting={modalVisible} />
+      <button className={styles.headerButton} onClick={showModalVisible}>
+        Create Note
+      </button>
+      <PostList
+        onStopPosting={hideModalVisible}
+        showModalVisible={showModalVisible}
+        isPosting={modalVisible}
+      />
 
       {modalVisible && <Modal onStopPosting={hideModalVisible} />}
       {isLoginVisible && <Login onClose={hideModalVisible} />}

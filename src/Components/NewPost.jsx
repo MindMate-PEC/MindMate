@@ -18,7 +18,7 @@ function NewPost(props) {
       // Fetch the userId from localStorage
       const userId = localStorage.getItem("userId");
       if (!userId) {
-        // alert("User ID is missing. Please log in again.");
+        alert("Kindly login or register");
         window.location.reload();
       }
       // console.log("userId", userId);
