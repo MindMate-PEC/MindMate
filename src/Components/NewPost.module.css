@@ -1,7 +1,8 @@
 .form {
     background-color: #6233b9;
     padding: 1rem;
-    width: 20rem;
+    width: 25rem;
+    border-radius: 4px;
   }
   
   .form label {
