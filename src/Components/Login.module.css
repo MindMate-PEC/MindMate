@@ -1,16 +1,18 @@
-/* Login.module.css */
-.modal {
+   /* .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #2e004f; 
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     z-index: 1000;
     width: 90%;
     max-width: 400px;
+    color: #fff; 
+  transform: translate(-50%, -40%);
+  transition: opacity 1.3s ease, transform 1.3s ease;
   }
   
   .form {
@@ -21,8 +23,11 @@
   .input {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
+    background-color: #45007d; 
+    color: #fff;
+    border: 1px solid #6e08a6; 
     border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
   }
   
   .buttonGroup {
@@ -33,7 +38,7 @@
   
   .submitButton {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #00aaff; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -41,12 +46,12 @@
   }
   
   .submitButton:hover {
-    background-color: #0056b3;
+    background-color: #0088cc; 
   }
   
   .cancelButton {
     padding: 10px;
-    background-color: #6c757d;
+    background-color: #e83e8c; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -54,6 +59,85 @@
   }
   
   .cancelButton:hover {
-    background-color: #5a6268;
+    background-color: #d63384; 
   }
   
+ */
+
+ /* Overlay for dimming the background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 0, 79, 0.7); /* Semi-transparent overlay */
+  z-index: 999; /* Below modal but above other content */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s ease; /* Smooth transition for showing */
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2e004f; /* A deeper purple for background */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  z-index: 1000; /* Above overlay */
+  width: 90%;
+  max-width: 400px;
+  color: #fff; /* White text for contrast */
+  opacity: 1; /* Fully visible when shown */
+  transition: opacity 1.3s ease, transform 1.3s ease; /* Smooth transitions */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #45007d; /* A lighter purple for inputs */
+  color: #fff;
+  border: 1px solid #6e08a6; /* A subtle purple border */
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #00aaff; /* Vibrant blue for the submit button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0088cc; /* Darker blue on hover */
+}
+
+.cancelButton {
+  padding: 10px;
+  background-color: #e83e8c; /* Vibrant pink for cancel button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #d63384; /* Darker pink on hover */
+}

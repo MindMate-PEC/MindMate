@@ -1,59 +1,73 @@
 /* Register.module.css */
+
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    z-index: 1000;
-    width: 90%;
-    max-width: 400px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-  
-  .submitButton {
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .submitButton:hover {
-    background-color: #218838;
-  }
-  
-  .cancelButton {
-    padding: 10px;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .cancelButton:hover {
-    background-color: #5a6268;
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2e004f; /* Dark purple for modal background */
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+  border-radius: 8px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  color: #fff; /* White text for contrast */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #45007d; /* A lighter purple for inputs */
+  color: #fff; /* White text in input */
+  border: 1px solid #6e08a6; /* Subtle purple border */
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  border-color: #00aaff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* Soft glow effect */
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #00aaff; /* Vibrant blue for the submit button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.submitButton:hover {
+  background-color: #0088cc; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight grow effect on hover */
+}
+
+.cancelButton {
+  padding: 10px;
+  background-color: #e83e8c; /* Vibrant pink for cancel button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.cancelButton:hover {
+  background-color: #d63384; /* Darker pink on hover */
+  transform: scale(1.05); /* Slight grow effect on hover */
+}

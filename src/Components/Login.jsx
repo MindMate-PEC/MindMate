@@ -29,42 +29,42 @@ function Login({ onClose }) {
   };
 
   return (
-    <div className={styles.modal}>
-      <form className={styles.form} onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-          className={styles.input}
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-          className={styles.input}
-        />
+      <div className={styles.modal}>
+        <form className={styles.form} onSubmit={handleLogin}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+            className={styles.input}
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className={styles.input}
+          />
 
-        {/* Show error message if login fails */}
-        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          {/* Show error message if login fails */}
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
 
-        <div className={styles.buttonGroup}>
-          <button type="submit" className={styles.submitButton}>
-            Login
-          </button>
-          <button
-            type="button"
-            className={styles.cancelButton}
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className={styles.buttonGroup}>
+            <button type="submit" className={styles.submitButton}>
+              Login
+            </button>
+            <button
+              type="button"
+              className={styles.cancelButton}
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
   );
 }
 
