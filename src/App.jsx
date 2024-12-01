@@ -1,64 +1,43 @@
-import { useState } from "react";
-import PostList from "./Components/PostList";
-import MainHeader from "./Components/MainHeader";
-import Modal from "./Components/Modal"; // Import Modal component
-import Login from "./Components/Login"; // Import Login component
-import Register from "./Components/Register"; // Import Register component
-import styles from "./App.module.css";
+import React from "react";
+import NoteMasterAuth from "./NoteMasterAuth"; // Ensure the path matches where NoteMasterAuth.jsx is saved
+import NoteApp from "./NoteApp";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NoteDetail from "./NoteDetail";
+// const App = () => {
+//   return (
+//     <div style={styles.appContainer}>
+//       <NoteMasterAuth />
+//     </div>
+//   );
+// };
 
-function App() {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [isLoginVisible, setIsLoginVisible] = useState(false);
-  const [isRegisterVisible, setIsRegisterVisible] = useState(false);
-
-  function hideModalVisible(event) {
-    setModalVisible(false);
-    setIsLoginVisible(false);
-    setIsRegisterVisible(false);
-  }
-
-  function showModalVisible(event) {
-    if (localStorage.getItem("userId")) {
-      setModalVisible(true);
-    } else {
-      alert("Kindly login or register");
-    }
-  }
-
-  function showLoginModal(event) {
-    setIsLoginVisible(true);
-  }
-
-  function showRegisterModal(event) {
-    setIsRegisterVisible(true);
-  }
-  function logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    window.location.reload();
-    alert("User logout succesfull");
-  }
+// const styles = {
+//   appContainer: {
+//     display: 'flex',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     height: '100vh',
+//     backgroundColor: '#f2f2f2',
+//     margin: '0',
+//   },
+// };
+const App = () => {
   return (
-    <>
-      <MainHeader
-        onLogin={showLoginModal}
-        onRegister={showRegisterModal}
-        logout={logout}
-      />
-      <button className={styles.headerButton} onClick={showModalVisible}>
-        Create Note
-      </button>
-      <PostList
-        onStopPosting={hideModalVisible}
-        showModalVisible={showModalVisible}
-        isPosting={modalVisible}
-      />
-
-      {modalVisible && <Modal onStopPosting={hideModalVisible} />}
-      {isLoginVisible && <Login onClose={hideModalVisible} />}
-      {isRegisterVisible && <Register onClose={hideModalVisible} />}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<NoteApp />} />
+        <Route path="/note/:id" element={<NoteDetail />} />
+      </Routes>
+    </Router>
   );
-}
+};
+
+const styles = {
+  appContainer: {
+    height: "100vh",
+    backgroundColor: "#f2f2f2",
+    margin: "0",
+  },
+};
 
 export default App;

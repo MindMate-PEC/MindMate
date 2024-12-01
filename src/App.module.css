@@ -1,7 +1,7 @@
 /* Reset focus outline, border, and box-shadow */
 .button,
 .headerButton {
-  background-color: #4c05d0;
+  /* background-color: #4c05d0; */
   color: white;
   border: none; /* Removes border */
   padding: 10px 15px;
