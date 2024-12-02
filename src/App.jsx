@@ -1,7 +1,7 @@
 import React from "react";
 import NoteMasterAuth from "./NoteMasterAuth"; // Ensure the path matches where NoteMasterAuth.jsx is saved
 import NoteApp from "./NoteApp";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NoteDetail from "./NoteDetail";
 // const App = () => {
 //   return (
