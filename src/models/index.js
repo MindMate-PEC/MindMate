@@ -12,14 +12,14 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 
-(async () => {
-  try {
-    await sequelize.sync({ alter: true }); // Use `alter` for non-destructive updates
-    console.log("Database & tables synced successfully!");
-  } catch (error) {
-    console.error("Error syncing database models:", error.message);
-  }
-})();
+// (async () => {
+//   try {
+//     await sequelize.sync({ alter: true }); // Use `alter` for non-destructive updates
+//     console.log("Database & tables synced successfully!");
+//   } catch (error) {
+//     console.error("Error syncing database models:", error.message);
+//   }
+// })();
 
 
 // Import models

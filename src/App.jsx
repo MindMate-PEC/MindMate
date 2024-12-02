@@ -3,30 +3,21 @@ import NoteMasterAuth from "./NoteMasterAuth"; // Ensure the path matches where 
 import NoteApp from "./NoteApp";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NoteDetail from "./NoteDetail";
-// const App = () => {
-//   return (
-//     <div style={styles.appContainer}>
-//       <NoteMasterAuth />
-//     </div>
-//   );
-// };
 
-// const styles = {
-//   appContainer: {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     height: '100vh',
-//     backgroundColor: '#f2f2f2',
-//     margin: '0',
-//   },
-// };
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<NoteApp />} />
+        <Route path="/notes" element={<NoteApp />} />
         <Route path="/note/:id" element={<NoteDetail />} />
+        <Route
+          path="/"
+          element={
+            <div style={styles.appContainer}>
+              <NoteMasterAuth />
+            </div>
+          }
+        />
       </Routes>
     </Router>
   );
@@ -34,6 +25,9 @@ const App = () => {
 
 const styles = {
   appContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     height: "100vh",
     backgroundColor: "#f2f2f2",
     margin: "0",

@@ -55,20 +55,20 @@ function decrypt(text) {
 }
 
 router.post("/postNote", async (req, res) => {
-  const { userId, heading, content } = req.body;
+  const { userId, heading, content, doctorId } = req.body;
   // Validate input data
   try {
     if (!userId || !heading || !content) {
       return res.status(400).json({ error: "All fields are required" });
     }
     const encryptedNote = encrypt(content);
-    const note = await db.Notes.create({ userId, heading, content: encryptedNote });
+    const note = await db.Notes.create({ userId, heading, content: encryptedNote , doctorId});
     res.status(201).json({ message: "Note added successfully", data: note });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       res
         .status(409)
-        .json({ error: "Student with this roll number already exists" });
+        .json({ error: "Student with this note already exists" });
     } else {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
@@ -96,5 +96,29 @@ router.post("/getNotes", async (req, res) => {
     }
   }
 });
+
+
+
+router.post("/getDrNotes", async (req, res) => {
+  const { doctorId } = req.body;
+  try {
+    const notes = await db.Notes.findAll({ where: { doctorId } });
+    notes.forEach(element => {
+      // console.log(element);
+      element.content = decrypt(element.content);
+    });
+    res.json({ data: notes });
+  } catch (error) {
+    if (error.name === "SequelizeUniqueConstraintError") {
+      res
+        .status(409)
+        .json({ error: "Student with this roll number already exists" });
+    } else {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+});
+
 
 module.exports = router;
