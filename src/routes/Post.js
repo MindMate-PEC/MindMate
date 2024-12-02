@@ -121,4 +121,26 @@ router.post("/getDrNotes", async (req, res) => {
 });
 
 
+router.delete("/deleteNotes", async (req, res) => {
+  try {
+    const { noteId } = req.body;
+
+    // Check if the note exists
+    const note = await db.Notes.findByPk(noteId);
+    if (!note) {
+      return res.status(404).json({ error: "Note not found" });
+    }
+
+    // Delete the note
+    await note.destroy();
+
+    res.status(200).json({ message: "Note deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting note:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+
 module.exports = router;
